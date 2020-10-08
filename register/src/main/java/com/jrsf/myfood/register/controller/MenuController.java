@@ -1,8 +1,6 @@
 package com.jrsf.myfood.register.controller;
 
-import com.jrsf.myfood.register.dto.ClientDto;
 import com.jrsf.myfood.register.dto.MenuDto;
-import com.jrsf.myfood.register.entity.Client;
 import com.jrsf.myfood.register.entity.Menu;
 import com.jrsf.myfood.register.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,7 @@ public class MenuController {
         this.menuService = menuService;
     }
 
-    @PostMapping("/insert")
+    @PostMapping(value = "/insert", consumes = "application/stream+json")
     public ResponseEntity insertMenu(@RequestBody MenuDto menuDto){
         try {
             Menu menu = menuService.insertMenu(menuDto);
