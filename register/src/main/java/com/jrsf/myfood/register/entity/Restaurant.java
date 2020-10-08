@@ -1,6 +1,5 @@
 package com.jrsf.myfood.register.entity;
 
-import com.jrsf.myfood.register.dto.ClientDto;
 import com.jrsf.myfood.register.dto.RestaurantDto;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
