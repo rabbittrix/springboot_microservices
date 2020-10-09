@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Menu {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private Double price;
