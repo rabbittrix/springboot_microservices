@@ -21,7 +21,7 @@ public class MenuController {
         this.menuService = menuService;
     }
 
-    @PostMapping(value = "/insert", consumes = "application/stream+json")
+    @PostMapping("/insert")
     public ResponseEntity insertMenu(@RequestBody MenuDto menuDto){
         try {
             Menu menu = menuService.insertMenu(menuDto);
@@ -29,7 +29,7 @@ public class MenuController {
             if (menu != null){
                 dto.setName(menu.getName());
                 dto.setPrice(menu.getPrice());
-                dto.setRestaurant(menu.getRestaurant().getId());
+                dto.setIdRestaurant(menu.getRestaurant().getId());
             }
             return Objects.nonNull(menu) ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
         } catch (Exception e){
