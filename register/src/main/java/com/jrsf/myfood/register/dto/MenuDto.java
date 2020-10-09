@@ -1,8 +1,10 @@
 package com.jrsf.myfood.register.dto;
 
+import com.jrsf.myfood.register.entity.Menu;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 import javax.persistence.*;
 
@@ -13,5 +15,9 @@ public class MenuDto {
 
     private String name;
     private Double price;
-    private Long restaurant;
+    private Long idRestaurant;
+
+    public static MenuDto create(Menu menu) {
+        return new ModelMapper().map(menu, MenuDto.class);
+    }
 }
