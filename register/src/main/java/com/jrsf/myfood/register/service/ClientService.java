@@ -1,6 +1,8 @@
 package com.jrsf.myfood.register.service;
 
+import com.jrsf.myfood.register.dto.ClientOrderDto;
 import com.jrsf.myfood.register.entity.Client;
+import com.jrsf.myfood.register.message.ClientSendMessage;
 import com.jrsf.myfood.register.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,14 +13,18 @@ import java.util.Optional;
 public class ClientService {
 
     private final ClientRepository clientRepository;
+    private final ClientSendMessage clientSendMessage;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, ClientSendMessage clientSendMessage) {
         this.clientRepository = clientRepository;
+        this.clientSendMessage = clientSendMessage;
     }
 
     public Client insertClient(Client client){
-        return clientRepository.save(client);
+        Client newClient = clientRepository.save(client);
+        clientSendMessage.sendMessage(new ClientOrderDto(newClient.getId()));
+        return newClient;
     }
 
     public Client updateClient(Client client){
