@@ -20,7 +20,7 @@ public class ClientReceiveMessage {
     @RabbitListener(queues = {"${register.client.rabbitmq.queue}"})
     public void receiveMessage(@Payload ClientOrderDto clientOrderDto){
         System.out.println(clientOrderDto);
-        clientOrderRepository.save(new ClientOrder(null, clientOrderDto.getIdClient()));
+        clientOrderRepository.save(ClientOrder.create(clientOrderDto));
     }
 
 }
